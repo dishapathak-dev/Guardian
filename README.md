@@ -15,9 +15,11 @@ Guardian provides a **one-click emergency system** that instantly sends alerts a
 ---
 
 ## ⚙️ Features
-- 🔴 Emergency Button Trigger  
+- 🔴 Emergency Button Trigger
 - 📍 Live Location Tracking (GPS)  
-- 📩 Instant Alerts via SMS/Call  
+- 📩 Instant Alerts via SMS/Call
+- 📞 Fake call feature
+- ⚖️ Legal Awareness  
 - 🔊 Buzzer/Alarm for nearby attention  
 - 🔌 Works with hardware (independent support)  
 - 📱 Optional app/web integration  
