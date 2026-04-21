@@ -55,6 +55,18 @@ The system detects an emergency trigger and sends alerts with location data.
 
 ---
 
+## 💻 Software Working Flow
+<p align="center">
+  <img src="software-flow.png" width="400"/>
+</p>
+
+### Explanation
+The software receives the emergency signal, fetches real-time location, generates alerts,  
+and sends notifications to emergency contacts.
+
+---
+
+
 ## 🔧 Hardware Working Flow
 <p align="center">
   <img src="hardware-flow.png" width="400"/>
@@ -66,14 +78,6 @@ When the button is pressed, it processes the signal and sends alert data via WiF
 
 ---
 
-## 💻 Software Working Flow
-<p align="center">
-  <img src="software-flow.png" width="400"/>
-</p>
-
-### Explanation
-The software receives the emergency signal, fetches real-time location, generates alerts,  
-and sends notifications to emergency contacts.
 
 ## 🔥 Future Improvements
 - Mobile app integration  
