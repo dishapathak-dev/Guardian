@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHEshield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+    <h2>SHEshield</h2>
+
+    <div id="phoneStep">
+        <input type="text" id="phone" placeholder="Enter Mobile Number">
+        <button onclick="sendOTP()">Send OTP</button>
+    </div>
+
+    <div id="otpStep" style="display:none;">
+        <p>Enter OTP</p>
+        <input type="text" id="otp" placeholder="Enter OTP">
+        <button onclick="verifyOTP()">Verify</button>
+    </div>
+
+    <p id="error" style="color:red;"></p>
+</div>
+
+<!-- APP PAGE -->
+<div id="appPage" style="display:none;">
+    
+    <div class="container">
+        
+        <div class="top-controls">
+            <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+            <button id="uiToggle" class="theme-btn">✨ Aesthetic Mode</button>
+            <button onclick="logout()" class="theme-btn">🚪 Logout</button>
+        </div>
+
+        <!-- YOUR FULL EXISTING UI CONTINUES HERE -->
+
+    <h1>SHEshield</h1>
+    <p class="tagline">One Tap. Instant Protection.</p>
+
+   <div class="card">
+    <button id="sosBtn">🚨 SOS</button>
+    <div id="emergencyStatus" class="emergency-status">
+        <div id="systemStatus" class="system-status">
+    <p id="recordStatus">🎙 Recording: OFF</p>
+    <p id="trackStatus">📡 Live Tracking: OFF</p>
+</div>
+    <h2>🚨 EMERGENCY MODE ACTIVE</h2>
+    <p id="priorityDisplay"></p>
+</div>
+    <div id="map"></div>
+    <button onclick="startLiveTracking()">📡 Start Live Tracking</button>
+<button onclick="stopLiveTracking()">🛑 Stop Live Tracking</button>
+<button id="shareBtn" onclick="shareTrackingLink()">📤 Share Tracking Link</button>
+<p id="linkMessage" style="color: green; font-size: 14px;"></p>
+
+    <button onclick="startRecording()">🎙 Start Recording</button>
+    <button onclick="stopRecording()">⏹ Stop Recording</button>
+
+</div>
+
+    <div class="card">
+        <h3>Add Trusted Contact</h3>
+        <input type="text" id="contactName" placeholder="Contact Name">
+        <input type="text" id="contactNumber" placeholder="Phone Number">
+        <input type="file" id="contactImage" accept="image/*">
+        <button onclick="addContact()">Add Contact</button>
+        <ul id="contactList"></ul>
+    </div>
+
+    <div class="card">
+        <h3>Emergency Tools</h3>
+        <button onclick="triggerFakeCall()">📞 Fake Call</button>
+        
+        <button onclick="window.location.href='awareness.html'">
+📘 Legal Awareness
+</button>
+    </div>
+</div>
+
+<!-- Fake Call Screen -->
+<div id="fakeCallScreen" class="fake-call">
+    <div class="call-content">
+        <h2 id="callerName">Mom</h2>
+        <p>Incoming Call...</p>
+        <div class="call-buttons">
+            <button class="accept" onclick="endCall()">Accept</button>
+            <button class="decline" onclick="endCall()">Decline</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<p id="voiceOutput" style="text-align:center; font-size:14px;">
+🎤 Voice system starting...
+</p>
+<script>
+const validPhone = "7658808743";
+const validPassword = "1234";
+
+function login() {
+    let phone = document.getElementById("phone").value;
+    let password = document.getElementById("password").value;
+
+    if(phone === validPhone && password === validPassword) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("appPage").style.display = "block";
+
+        localStorage.setItem("loggedIn", "true");
+    } else {
+        document.getElementById("error").innerText = "Invalid credentials!";
+    }
+}
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    location.reload();
+}
+
+window.onload = function() {
+    if(localStorage.getItem("loggedIn") === "true") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("appPage").style.display = "block";
+    }
+}
+</script>
+<script>
+let generatedOTP = "";
+
+function sendOTP() {
+    let phone = document.getElementById("phone").value;
+
+    if(phone.length !== 10){
+        document.getElementById("error").innerText = "Enter valid number!";
+        return;
+    }
+
+    // Generate fake OTP
+    generatedOTP = Math.floor(1000 + Math.random() * 9000);
+
+    alert("OTP: " + generatedOTP); // Demo only
+
+    document.getElementById("phoneStep").style.display = "none";
+    document.getElementById("otpStep").style.display = "block";
+}
+
+function verifyOTP() {
+    let enteredOTP = document.getElementById("otp").value;
+
+    if(enteredOTP == generatedOTP){
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("appPage").style.display = "block";
+
+        localStorage.setItem("loggedIn", "true");
+    } else {
+        document.getElementById("error").innerText = "Wrong OTP!";
+    }
+}
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    location.reload();
+}
+
+window.onload = function() {
+    if(localStorage.getItem("loggedIn") === "true") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("appPage").style.display = "block";
+    }
+}
+</script>
+<script src="script.js"></script>
+<audio id="ringtone" src="ringtone.mp3" loop></audio>
+<div id="countdownOverlay" class="overlay">
+    <div class="countdown-box">
+        <h2>🚨 SOS Activating</h2>
+        <p id="countdownNumber">5</p>
+        <button onclick="cancelSOS()">Cancel</button>
+    </div>
+</div>
+
+
+
+</body>
+</html>
