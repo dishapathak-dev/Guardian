@@ -44,34 +44,34 @@ To build a fast, reliable, and easy-to-use safety system that can help protect w
 ---
 ## 🔌 Circuit Diagram
 <p align="center">
-  <img src="circuit.png" width="500"/>
+  <img src="circuit.png" width="600"/>
 </p>
 
 ### Explanation
 This diagram represents the hardware connections between ESP32, GPS module, GSM module, push button, and buzzer.  
-The system is designed to detect an emergency trigger and send alerts with location data.
+The system detects an emergency trigger and sends alerts with location data.
 
 ---
 
 ## 🔧 Hardware Working Flow
 <p align="center">
-  <img src="hardware-flow.png" width="500"/>
+  <img src="hardware-flow.png" width="400"/>
 </p>
 
 ### Explanation
-The hardware system runs on ESP32, which stays in standby mode.  
-When the emergency button is pressed, it processes the signal and sends alert data via WiFi/GSM.
+The hardware system runs on ESP32 in standby mode.  
+When the button is pressed, it processes the signal and sends alert data via WiFi/GSM.
 
 ---
 
 ## 💻 Software Working Flow
 <p align="center">
-  <img src="software-flow.png" width="500"/>
+  <img src="software-flow.png" width="400"/>
 </p>
 
 ### Explanation
-The software receives the emergency signal, fetches real-time location, generates an alert message,  
-and sends notifications with location details to emergency contacts.
+The software receives the emergency signal, fetches real-time location, generates alerts,  
+and sends notifications to emergency contacts.
 
 ## 🔥 Future Improvements
 - Mobile app integration  
